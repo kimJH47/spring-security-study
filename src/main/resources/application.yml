@@ -1,1 +1,10 @@
-
+spring:
+  batch:
+    job:
+      names: ${job.name:NONE} # java -jar batch.jar --spring.batch.job.names = {JobName}
+    jdbc:
+      initialize-schema: always
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: validate
