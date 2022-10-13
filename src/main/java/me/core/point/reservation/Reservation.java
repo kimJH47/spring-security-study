@@ -46,4 +46,5 @@ public class Reservation extends IdEntity {
     public LocalDate getExpireDate() {
         return this.earnedDate.plusDays(this.availableDays);
     }
+
 }

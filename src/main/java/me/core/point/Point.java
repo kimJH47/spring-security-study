@@ -2,6 +2,7 @@ package me.core.point;
 
 
 import lombok.*;
+import me.core.point.reservation.Reservation;
 import me.core.point.wallet.PointWallet;
 
 import javax.persistence.*;
@@ -48,6 +49,17 @@ public class Point extends IdEntity {
         if (!this.used) {
             this.expired = true;
         }
+    }
+
+    public void plusAmountInWallet() {
+        this.pointWallet.plusAmount(this.getAmount());
+    }
+
+    public static Point ReservationToPoint(Reservation reservation) {
+        return new Point(reservation.getPointWallet(),
+                reservation.getAmount(),
+                reservation.getEarnedDate(),
+                reservation.getExpireDate());
     }
 }
 

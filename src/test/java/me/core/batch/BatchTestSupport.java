@@ -1,4 +1,4 @@
-package com.springsecuritystudy.batch;
+package me.core.batch;
 
 import me.core.PointManagementApplication;
 import me.core.message.MessageRepository;
@@ -45,9 +45,9 @@ public abstract class BatchTestSupport {
     }
     @AfterEach
     protected void deleteAll() {
-        pointRepository.deleteAll();
-        pointWalletRepository.deleteAll();
         messageRepository.deleteAll();
+        pointRepository.deleteAll();
         reservationRepository.deleteAll();
+        pointWalletRepository.deleteAll();
     }
 }

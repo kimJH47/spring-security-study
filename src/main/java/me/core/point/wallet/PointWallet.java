@@ -24,4 +24,10 @@ public class PointWallet extends IdEntity {
     public void minusAmount(BigInteger amount) {
         this.amount=this.amount.subtract(amount);
     }
+    public void plusAmount(BigInteger amount) {
+        this.amount = this.amount.add(amount);
+        System.out.println("now amount" + amount + " wallet amount" + this.amount);
+
+    }
+
 }

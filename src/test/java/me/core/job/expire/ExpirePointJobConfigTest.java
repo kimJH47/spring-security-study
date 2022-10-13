@@ -1,11 +1,10 @@
-package com.springsecuritystudy.batch.expire;
+package me.core.job.expire;
 
-import com.springsecuritystudy.batch.BatchTestSupport;
+import me.core.batch.BatchTestSupport;
 import me.core.point.Point;
 import me.core.point.PointRepository;
 import me.core.point.wallet.PointWallet;
 import me.core.point.wallet.PointWalletRepository;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.batch.core.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static org.assertj.core.api.BDDAssertions.then;
 import static org.junit.jupiter.api.Assertions.*;
