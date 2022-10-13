@@ -1,2 +1,7 @@
-package me.core.point;public interface PointRepository {
+package me.core.point;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface PointRepository extends JpaRepository<Point, Long> {
+
 }

@@ -1,10 +1,7 @@
 package me.core.point;
 
 
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import me.core.point.wallet.PointWallet;
 
 import javax.persistence.*;
@@ -35,6 +32,7 @@ public class Point extends IdEntity {
     private boolean used;
 
     @Column(name = "is_expired", nullable = false, columnDefinition = "TINYINT", length = 1)
+    @Setter
     private boolean expired;
 
     public Point(PointWallet pointWallet, BigInteger amount, LocalDate earnedDate, LocalDate expireDate) {

@@ -1,9 +1,6 @@
 package me.core.point.wallet;
 
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import me.core.point.IdEntity;
 
 import javax.persistence.Column;
@@ -21,5 +18,10 @@ public class PointWallet extends IdEntity {
     @Column(name = "user_id", unique = true, nullable = false)
     private String userId;
     @Column(name = "amount",columnDefinition = "BIGINT")
+    @Setter
     private BigInteger amount;
+
+    public void minusAmount(BigInteger amount) {
+        this.amount=this.amount.subtract(amount);
+    }
 }
