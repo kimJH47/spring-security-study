@@ -14,10 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.math.BigInteger;
 import java.time.LocalDate;
-import java.util.Optional;
-
 import static org.assertj.core.api.BDDAssertions.then;
-import static org.junit.jupiter.api.Assertions.*;
 
 class ReservationPointJobConfigTest extends BatchTestSupport {
     @Autowired
