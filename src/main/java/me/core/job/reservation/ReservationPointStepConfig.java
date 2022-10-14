@@ -22,7 +22,6 @@ import org.springframework.data.util.Pair;
 import org.springframework.transaction.PlatformTransactionManager;
 
 import javax.persistence.EntityManagerFactory;
-import javax.swing.*;
 import java.time.LocalDate;
 import java.util.Map;
 @Configuration
@@ -32,15 +31,16 @@ public class ReservationPointStepConfig {
     @Bean
     @JobScope
     public Step reservationPointStep(StepBuilderFactory stepBuilderFactory,
-                                PlatformTransactionManager platformTransactionManager,
-                                JpaPagingItemReader<Reservation> reservationPointItemReader,
-                                ItemProcessor<Reservation, Pair<Point,Reservation>> reservationPointProcessor,
-                                ItemWriter<Pair<Point,Reservation>> reservationPointItemWriter) {
+                                     PlatformTransactionManager platformTransactionManager,
+                                     JpaPagingItemReader<Reservation> reservationPointItemReader,
+                                     ItemProcessor<Reservation, Pair<Point, Reservation>> reservationPointProcessor,
+                                     ItemWriter<Pair<Point, Reservation>> reservationPointItemWriter
+                                     ) {
 
         return stepBuilderFactory.get("reservationPointStep")
                                  .allowStartIfComplete(true)
                                  .transactionManager(platformTransactionManager)
-                                 .<Reservation, Pair<Point,Reservation>>chunk(1000)
+                                 .<Reservation, Pair<Point, Reservation>>chunk(1000)
                                  .reader(reservationPointItemReader)
                                  .processor(reservationPointProcessor)
                                  .writer(reservationPointItemWriter)
