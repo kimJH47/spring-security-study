@@ -34,7 +34,7 @@ class MessageExpiredPointJobConfigTest extends BatchTestSupport {
     @Autowired
     MessageRepository messageRepository;
     @Test
-    public void 포인트완료메시지_발송테스트() throws Exception{
+    public void 포인트만료_메시지_발송테스트() throws Exception{
         //given
         LocalDate earnDate = LocalDate.of(2021, 1, 1);
         LocalDate expireDate = LocalDate.of(2021, 1, 3);

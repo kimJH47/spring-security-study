@@ -2,11 +2,12 @@ package me.core.job.listener;
 
 import org.springframework.batch.core.*;
 import org.springframework.batch.item.ExecutionContext;
+import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-
-public class InputExpireSoonPointAlramCriteriaDateStepListener implements StepExecutionListener {
+@Component
+public class InputExpireSoonPointAlarmCriteriaDateStepListener implements StepExecutionListener {
     @Override
     public void beforeStep(StepExecution stepExecution) {
         JobParameter todayParameter = stepExecution.getJobParameters()

@@ -7,6 +7,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.support.QuerydslRepositorySupport;
 
+import java.beans.Expression;
 import java.math.BigInteger;
 import java.time.LocalDate;
 import java.util.List;
@@ -25,8 +26,7 @@ public class PointCustomRepositoryImpl extends QuerydslRepositorySupport impleme
                         new QExpiredPointSummary(
                                 QPoint.point.pointWallet.userId,
                                 QPoint.point.amount.sum()
-                                                   .coalesce(BigInteger.ZERO),
-                                QPoint.point.expireDate
+                                                   .coalesce(BigInteger.ZERO)
                         )
                 )
                 .where(QPoint.point.expired.eq(true))
@@ -42,4 +42,28 @@ public class PointCustomRepositoryImpl extends QuerydslRepositorySupport impleme
                 elementCount);
     }
 
+    @Override
+    public Page<ExpiredPointSummary> sumByExpiredSoonDate(LocalDate alarmCriteriaDate, Pageable pageable) {
+        JPQLQuery<ExpiredPointSummary> query = from(QPoint.point)
+                .select(
+                        new QExpiredPointSummary(
+                                QPoint.point.pointWallet.userId,
+                                QPoint.point.amount.sum()
+                                                   .coalesce(BigInteger.ZERO)
+                        )
+                )
+                .where(QPoint.point.expired.eq(false))
+                .where(QPoint.point.used.eq(false))
+                .where(QPoint.point.expireDate.lt(alarmCriteriaDate))
+                .groupBy(QPoint.point.pointWallet);
+        List<ExpiredPointSummary> expiredPointSummaryList = getQuerydsl().applyPagination(pageable, query)
+                                                                         .fetch();
+        long elementCount = query.fetchCount();
+        return new PageImpl<>(expiredPointSummaryList,
+                PageRequest.of(pageable.getPageNumber(), pageable.getPageSize()),
+                elementCount);
+    }
+
+
 }
+
